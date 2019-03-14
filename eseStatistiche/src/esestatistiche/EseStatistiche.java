@@ -15,7 +15,7 @@ public class EseStatistiche {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int daGenerare=5;
+        int daGenerare=1;
         DatiCondivisi dati = new DatiCondivisi(daGenerare);
         
         thGenera1 genera = new thGenera1(dati);
@@ -27,7 +27,7 @@ public class EseStatistiche {
         genera.start();
         contaPunti.start();
         contaSpazi.start();
-        visualizza.start();
+        
         
         try{
             contaPunti.join();
@@ -35,12 +35,14 @@ public class EseStatistiche {
         }catch(InterruptedException e){
             
         }
-        
-        dati.fermaTutti();
-        
+        visualizza.start();
         try{
             visualizza.join();
         }catch(InterruptedException e){}
+        
+        dati.fermaTutti();
+        
+        
     }
     
 }
