@@ -15,7 +15,32 @@ public class EseStatistiche {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        int daGenerare=5;
+        DatiCondivisi dati = new DatiCondivisi(daGenerare);
+        
+        thGenera1 genera = new thGenera1(dati);
+        thConta contaPunti = new thConta(dati,true);
+        thConta contaSpazi = new thConta(dati,false);
+        thVisualizza visualizza = new thVisualizza(dati);
+        
+        
+        genera.start();
+        contaPunti.start();
+        contaSpazi.start();
+        visualizza.start();
+        
+        try{
+            contaPunti.join();
+            contaSpazi.join();
+        }catch(InterruptedException e){
+            
+        }
+        
+        dati.fermaTutti();
+        
+        try{
+            visualizza.join();
+        }catch(InterruptedException e){}
     }
     
 }

@@ -26,9 +26,26 @@ public class thGenera1 extends Thread{
         Character selez;
         Random rn = new Random();
         
+        ptrDati.acquireSyncContato();//ASPETTO CHE ABBIANO CONTATO ENTRAMBI I TH
+        ptrDati.acquireSyncContato();
+        
         while(i<daGenerare){
-            selez=str.charAt(rn.nextInt(25));//Prendo un carattere dal io alfabeto
+            selez=str.charAt(rn.nextInt(25));//Prendo un carattere dal mio alfabeto
+            
+            ptrDati.push(selez);//Lo carico nel buffer
+            
+            //Aggiorno i punti e gli spazi inseriti
+            if(selez.equals(' ')){
+                ptrDati.addSpaziInseriti();
+            }else if(selez.equals('.')){
+                ptrDati.addPuntiInseriti();
+            }
+            
             i++;
         }
+        
+        ptrDati.releaseSyncGenerato();//Do la possibilità agli altri 2 thread di continuare
+        ptrDati.releaseSyncGenerato();
+        
     }
 }
