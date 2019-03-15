@@ -32,7 +32,6 @@ public class thVisualizza extends Thread{
             }
             
             if(ptrDati.getContinua()==true){
-                System.out.println(ptrDati.getElement(i));
                 System.out.println("Spazi Inseriti:"+ptrDati.getSpaziInseriti());
                 System.out.println("Spazi Letti:"+ptrDati.getSpaziLetti());
 

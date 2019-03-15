@@ -5,6 +5,8 @@
  */
 package esestatistiche;
 
+import java.util.Scanner;
+
 /**
  *
  * @author saccani_federico
@@ -15,7 +17,11 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int daGenerare=500;
+        int daGenerare;
+        Scanner ts = new Scanner(System.in);
+        System.out.print("Numeri da generare:");
+        daGenerare=ts.nextInt();
+        
         DatiCondivisi dati = new DatiCondivisi(daGenerare);
         
         thGenera1 genera = new thGenera1(dati);
