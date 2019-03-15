@@ -9,13 +9,13 @@ package esestatistiche;
  *
  * @author saccani_federico
  */
-public class EseStatistiche {
+public class main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int daGenerare=1;
+        int daGenerare=500;
         DatiCondivisi dati = new DatiCondivisi(daGenerare);
         
         thGenera1 genera = new thGenera1(dati);
@@ -23,10 +23,10 @@ public class EseStatistiche {
         thConta contaSpazi = new thConta(dati,false);
         thVisualizza visualizza = new thVisualizza(dati);
         
-        
-        genera.start();
         contaPunti.start();
         contaSpazi.start();
+        genera.start();
+        visualizza.start();
         
         
         try{
@@ -35,12 +35,15 @@ public class EseStatistiche {
         }catch(InterruptedException e){
             
         }
-        visualizza.start();
+        dati.fermaTutti();
+        dati.getSyncModificato().release();
+        
+        
         try{
             visualizza.join();
         }catch(InterruptedException e){}
         
-        dati.fermaTutti();
+        
         
         
     }

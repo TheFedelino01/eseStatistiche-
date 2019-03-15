@@ -21,14 +21,17 @@ public class DatiCondivisi {
     
     private Semaphore syncGenerato;
     private Semaphore syncContato;
-    private Semaphore hoModificato;
+    
+    private Semaphore syncScritto;
+    private Semaphore syncModificato;
     
     public DatiCondivisi(int daGene){
         vett = new Vector<Character>(daGene);
         daGenerare=daGene;
         syncGenerato = new Semaphore(0);
         syncContato = new Semaphore(2);
-        hoModificato = new Semaphore(0);
+        syncScritto = new Semaphore(0);
+        syncModificato = new Semaphore(0);
         continua=true;
     }
     
@@ -76,32 +79,26 @@ public class DatiCondivisi {
         return daGenerare;
     }
     
-    public synchronized void acquireHoModificato() {
-        try{
-        hoModificato.acquire();
-        }catch(InterruptedException e){System.out.println(e.toString());}
-    }
-    public synchronized void releasehoModificato() {    
-        hoModificato.release();
-    }
+    public Semaphore getSyncScritto(){return syncScritto;}
+    public Semaphore getSyncModificato(){return syncModificato;}
     
-    public synchronized void acquireSyncGenerato() {
+    public  void acquireSyncGenerato() {
         try{
         syncGenerato.acquire();
         }catch(InterruptedException e){System.out.println(e.toString());}
     }
     
-    public synchronized void releaseSyncGenerato() {    
+    public  void releaseSyncGenerato() {    
         syncGenerato.release();
     }
     
-    public synchronized void acquireSyncContato() {
+    public  void acquireSyncContato() {
         try{
         syncContato.acquire();
         }catch(InterruptedException e){System.out.println(e.toString());}
     }
     
-    public synchronized void releaseSyncContato() {    
+    public  void releaseSyncContato() {    
         syncContato.release();
     }
     
