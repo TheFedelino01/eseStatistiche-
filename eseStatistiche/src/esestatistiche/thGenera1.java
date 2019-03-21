@@ -29,8 +29,8 @@ public class thGenera1 extends Thread{
         Character selez;
         Random rn = new Random();
 
-        ptrDati.acquireSyncContato();//ASPETTO CHE ABBIANO CONTATO ENTRAMBI I TH
-        ptrDati.acquireSyncContato();
+        // ptrDati.acquireSyncContato();//ASPETTO CHE ABBIANO CONTATO ENTRAMBI I TH
+        // ptrDati.acquireSyncContato();
 
         while(i<daGenerare){
             selez=str.charAt(rn.nextInt(26));//Prendo un carattere dal mio alfabeto
